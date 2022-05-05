@@ -68,40 +68,6 @@ public class GenerateXmlReport {
                 System.out.println("Thread: " + Thread.currentThread().getName() + " running");
                 unzip("./IntTestResult.zip", ".");
 
-                try{
-                    Path newFileUnitTest2 = Paths.get("IntTestResult2.xml");
-                    Files.createFile(newFileUnitTest2);
-
-                } catch (IOException ex) {
-                    //exception
-                }
-
-
-                try {
-                    Scanner scanner2 = new Scanner(new File("IntTestResult.xml"));
-                    //Scanner scanner2 = new Scanner(new File("IntTestResult.xml"));
-
-                    while (scanner2.hasNextLine()) {
-                        String contentToAppend = scanner2.nextLine();
-                        System.out.println("Writing a new line to IntTestResult2.xml...");
-                        try {
-                            Files.write(
-                                    Paths.get("./IntTestResult2.xml"),
-                                    contentToAppend.getBytes(),
-                                    StandardOpenOption.APPEND);
-                        } catch (IOException ex) {
-                            //exception
-                        }
-
-
-                    }
-
-                    scanner2.close();
-
-                } catch (FileNotFoundException e) {
-                    e.printStackTrace();
-                }
-
 
 
             }
