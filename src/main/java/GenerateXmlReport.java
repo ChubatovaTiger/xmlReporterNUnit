@@ -15,41 +15,58 @@ public class GenerateXmlReport {
 
     public static void main(String[] args) {
 
-        unzip("./IntTestResult.zip", ".");
-        unzip("./UnitTestResult.zip", ".");
-
-        try{
-        Path newFileUnitTest = Paths.get("UnitTestResult2.xml");
-        Files.createFile(newFileUnitTest);
-
-        } catch (IOException ex) {
-        //exception
-        }
+        new Thread("UnitTestsThread"){
+            public void run(){
 
 
-        try {
-            Scanner scanner1 = new Scanner(new File("UnitTestResult.xml"));
-            //Scanner scanner2 = new Scanner(new File("IntTestResult.xml"));
+                System.out.println("Thread: " + Thread.currentThread().getName() + " running");
+                unzip("./UnitTestResult.zip", ".");
 
-            while (scanner1.hasNextLine()) {
-                String contentToAppend = scanner1.nextLine();
-                try {
-                    Files.write(
-                            Paths.get("./UnitTestResult2.xml"),
-                            contentToAppend.getBytes(),
-                            StandardOpenOption.APPEND);
+                try{
+                    Path newFileUnitTest = Paths.get("UnitTestResult2.xml");
+                    Files.createFile(newFileUnitTest);
+
                 } catch (IOException ex) {
                     //exception
                 }
 
 
+                try {
+                    Scanner scanner1 = new Scanner(new File("UnitTestResult.xml"));
+                    //Scanner scanner2 = new Scanner(new File("IntTestResult.xml"));
+
+                    while (scanner1.hasNextLine()) {
+                        String contentToAppend = scanner1.nextLine();
+                        System.out.println("Writing a new line to UnitTestResult2.xml...");
+                        try {
+                            Files.write(
+                                    Paths.get("./UnitTestResult2.xml"),
+                                    contentToAppend.getBytes(),
+                                    StandardOpenOption.APPEND);
+                        } catch (IOException ex) {
+                            //exception
+                        }
+
+
+                    }
+
+                    scanner1.close();
+
+                } catch (FileNotFoundException e) {
+                    e.printStackTrace();
+                }
+
+
+
             }
+        }.start();
 
-            scanner1.close();
+       
 
-        } catch (FileNotFoundException e) {
-            e.printStackTrace();
-        }
+
+
+
+
     }
 
 
