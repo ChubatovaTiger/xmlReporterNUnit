@@ -69,7 +69,7 @@ public class GenerateXmlReport {
                 unzip("./IntTestResult.zip", ".");
 
                 try{
-                    Path newFileUnitTest2 = Paths.get("InttTestResult2.xml");
+                    Path newFileUnitTest2 = Paths.get("IntTestResult2.xml");
                     Files.createFile(newFileUnitTest2);
 
                 } catch (IOException ex) {
