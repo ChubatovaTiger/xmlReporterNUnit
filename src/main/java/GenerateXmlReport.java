@@ -18,6 +18,14 @@ public class GenerateXmlReport {
         unzip("./IntTestResult.zip", ".");
         unzip("./UnitTestResult.zip", ".");
 
+        try{
+        Path newFileUnitTest = Paths.get("UnitTestResult2.xml");
+        Files.createFile(newFileUnitTest);
+
+        } catch (IOException ex) {
+        //exception
+        }
+
 
         try {
             Scanner scanner1 = new Scanner(new File("UnitTestResult.xml"));
