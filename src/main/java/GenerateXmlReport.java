@@ -19,7 +19,7 @@ public class GenerateXmlReport {
         unzip("./UnitTestResult.zip", ".");
 
         try{
-        Path newFileUnitTest = Paths.get("UnitTestResult2.xml");
+        Path newFileUnitTest = Paths.get("IntTestResult2.xml");
         Files.createFile(newFileUnitTest);
 
         } catch (IOException ex) {
@@ -28,14 +28,14 @@ public class GenerateXmlReport {
 
 
         try {
-            Scanner scanner1 = new Scanner(new File("UnitTestResult.xml"));
+            Scanner scanner1 = new Scanner(new File("IntTestResult.xml"));
             //Scanner scanner2 = new Scanner(new File("IntTestResult.xml"));
 
             while (scanner1.hasNextLine()) {
                 String contentToAppend = scanner1.nextLine();
                 try {
                     Files.write(
-                            Paths.get("./UnitTestResult2.xml"),
+                            Paths.get("./IntTestResult2.xml"),
                             contentToAppend.getBytes(),
                             StandardOpenOption.APPEND);
                 } catch (IOException ex) {
